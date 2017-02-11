@@ -1,0 +1,21 @@
+{
+  "name": "eonconsulting/laravel-lti",
+  "description": "",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Josh Harington",
+      "email": "josh1@live.co.za"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "EONConsulting\\LaravelLTI\\": "src/"
+    },
+    "files": [
+      "src/functions.php"
+    ]
+  },
+  "require": {
+  }
+}
