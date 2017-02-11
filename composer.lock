@@ -1,0 +1,64 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "e44284125be8f8f9da970ac61cee6fce",
+    "packages": [
+        {
+            "name": "tsugi/lib",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tsugiproject/tsugi-php.git",
+                "reference": "60bc5574df95e7bd657c18ecce5baed08680ada5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tsugiproject/tsugi-php/zipball/60bc5574df95e7bd657c18ecce5baed08680ada5",
+                "reference": "60bc5574df95e7bd657c18ecce5baed08680ada5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tsugi\\": "src/"
+                },
+                "exclude-from-classmap": [
+                    "/tests/",
+                    "phpdoc.dist.xml",
+                    "phpunit.xml.dist"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "csev",
+                    "email": "drchuck@gmail.com",
+                    "homepage": "http://www.dr-chuck.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The PHP Library to build interoperable learning tools",
+            "homepage": "http://www.tsugi.org/",
+            "time": "2016-11-26 16:59:43"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "tsugi/lib": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

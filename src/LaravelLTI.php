@@ -9,7 +9,6 @@
 namespace EONConsulting\LaravelLTI;
 
 
-class LaravelLTI
-{
+class LaravelLTI {
 
 }
