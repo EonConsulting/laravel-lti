@@ -9,6 +9,12 @@
 namespace EONConsulting\LaravelLTI;
 
 
+use EONConsulting\LaravelLTI\Http\Controllers\LaunchLTI;
+
 class LaravelLTI {
+
+    public function launch() {
+        return LaunchLTI::launchTao();
+    }
 
 }

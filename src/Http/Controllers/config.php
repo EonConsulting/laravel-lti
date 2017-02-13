@@ -6,7 +6,7 @@
 
 // If we just are using Tsugi but not part of another site
 $apphome = false;
-$wwwroot = env('APP_URL');
+$wwwroot = env('APP_URL', 'http://tools.dev');
 // $wwwroot = 'http://localhost:8888/tsugi';
 // $wwwroot = "https://fb610139.ngrok.io/tsugi";
 
@@ -17,7 +17,7 @@ $wwwroot = env('APP_URL');
 // $wwwhost = $apphome . '/tsugi';
 // Make sure to check for all the "Embedded Tsugi" configuration options below
 
-$dirroot = __DIR__;
+$dirroot = realpath(__DIR__);
 
 require_once(__DIR__."/../../../vendor/autoload.php");
 
@@ -36,10 +36,10 @@ unset($apphome);
 // You need to point this at a database with am account and password
 // that can create tables.   To make the initial tables go into Admin
 // to run the upgrade.php script which auto-creates the tables.
-$CFG->pdo       = 'mysql:host=' . env('DB_HOST') . ';dbname=' . env('DB_DATABASE');
+$CFG->pdo       = 'mysql:host=' . env('DB_HOST', '127.0.0.1') . ';dbname=' . env('DB_DATABASE', 'tools');
 // $CFG->pdo       = 'mysql:host=127.0.0.1;port=8889;dbname=tsugi'; // MAMP
-$CFG->dbuser    = env('DB_USERNAME');
-$CFG->dbpass    = env('DB_PASSWORD');
+$CFG->dbuser    = env('DB_USERNAME', 'root');
+$CFG->dbpass    = env('DB_PASSWORD', 'root');
 
 // You can use the CDN copy of the static content - it is the
 // default unless you override it.

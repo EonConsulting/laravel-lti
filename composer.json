@@ -10,7 +10,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "EONConsulting\\LaravelLTI\\": "src/"
+      "EONConsulting\\LaravelLTI\\": "src/",
+      "Tsugi\\": "vendor/tsugi/lib/src"
     },
     "files": [
       "src/functions.php"
