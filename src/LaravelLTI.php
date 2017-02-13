@@ -14,6 +14,7 @@ use EONConsulting\LaravelLTI\Http\Controllers\LaunchLTI;
 class LaravelLTI {
 
     public function launch() {
+//        return LaunchLTI::launch();
         return LaunchLTI::launchTao();
     }
 

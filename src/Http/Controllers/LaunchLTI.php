@@ -17,7 +17,7 @@ use Tsugi\Util\LTI;
 class LaunchLTI {
 
     static public function launch() {
-        $launch_url = 'http://tools.dev/lti/storyline';
+        $launch_url = 'http://www.imathas.com/reader/readerlti.php';
 
         $tool_consumer_instance_guid = 'lmsng.school.edu';
         $tool_consumer_instance_description = 'University of School (LMSng)';
@@ -64,15 +64,18 @@ class LaunchLTI {
     }
 
     static public function launchTao() {
-        $launch_url = 'https://dev.unisaonline.net/tao/ltiDeliveryProvider/DeliveryTool/launch/eyJkZWxpdmVyeSI6Imh0dHA6XC9cL3VuaXNhdGVzdDIuY2xvdWRhcHAubmV0XC90YW9cL3VuaXNhLnJkZiNpMTQ1OTIzNjc0OTc4MjcyNzk0In0=';
-
-        $key = 'unisa';
-        $secret = '12345';
+        $launch_url = 'http://www.imathas.com/reader/readerlti.php';
+        $key = 'test.com';
+        $secret = '';
+//        $launch_url = 'https://dev.unisaonline.net/tao/ltiDeliveryProvider/DeliveryTool/launch/eyJkZWxpdmVyeSI6Imh0dHA6XC9cL3VuaXNhdGVzdDIuY2xvdWRhcHAubmV0XC90YW9cL3VuaXNhLnJkZiNpMTQ1OTIzNjc0OTc4MjcyNzk0In0=';
+//        $key = 'unisa';
+//        $secret = '12345';
 
         $tool_consumer_instance_guid = 'lmsng.school.edu';
         $tool_consumer_instance_description = 'University of School (LMSng)';
 
         $params = [
+            'key' => $key,
             'lti_message_type' => 'basic-lti-launch-request',
             'lti_version' => '2.0',
             'resource_link_id' => '12345',
