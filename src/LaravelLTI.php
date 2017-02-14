@@ -9,6 +9,7 @@
 namespace EONConsulting\LaravelLTI;
 
 
+use EONConsulting\LaravelLTI\Http\Controllers\InstallLTIToolController;
 use EONConsulting\LaravelLTI\Http\Controllers\LaunchLTI;
 
 class LaravelLTI {
@@ -16,6 +17,10 @@ class LaravelLTI {
     public function launch() {
 //        return LaunchLTI::launch();
         return LaunchLTI::launchTao();
+    }
+
+    public function install() {
+        return InstallLTIToolController::index();
     }
 
 }
