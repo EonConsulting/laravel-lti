@@ -22,10 +22,11 @@ class LaravelLTIServiceProvider extends ServiceProvider {
 
     public function boot() {
         $this->publishMigrations();
-//        $this->views();
-//        $this->publishes([
-//            __DIR__.'/assets' => public_path('vendor/appstore'),
-//        ], 'public');
+        $this->views();
+        $this->routes();
+        $this->publishes([
+            __DIR__.'/assets' => public_path('vendor/laravellti'),
+        ], 'public');
     }
 
     private function publishMigrations() {
@@ -39,6 +40,10 @@ class LaravelLTIServiceProvider extends ServiceProvider {
 
     public function views() {
         $this->loadViewsFrom(__DIR__.'/resources/views', 'eon.laravellti');
+    }
+
+    public function routes() {
+        $this->loadRoutesFrom(__DIR__.'/Routes/web.php');
     }
 
 }

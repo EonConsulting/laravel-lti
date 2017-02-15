@@ -19,15 +19,19 @@ use Tsugi\Util\LTI;
 
 class LTIBaseController extends Controller {
 
+    protected $hasLTI = true;
+
     public function __construct() {
-        $this->middleware(function ($request, $next) {
-            $launch = LTIX::laravelSetup($request, LTIX::ALL);
-            if ( $launch->redirect_url ) return redirect($launch->redirect_url);
-            if ( $launch->send_403 ) return response($launch->error_message, 403);
-            ob_start();
-            ob_get_clean();
-            return $next($request);
-        });
+        if($this->hasLTI) {
+            $this->middleware(function ($request, $next) {
+                $launch = LTIX::laravelSetup($request, LTIX::ALL);
+                if ($launch->redirect_url) return redirect($launch->redirect_url);
+                if ($launch->send_403) return response($launch->error_message, 403);
+                ob_start();
+                ob_get_clean();
+                return $next($request);
+            });
+        }
     }
 
 }

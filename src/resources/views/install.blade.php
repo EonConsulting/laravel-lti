@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container" id="app-install">
 
         <div class="row">
             <div class="col-md-12">
@@ -28,236 +28,66 @@
         </div>
 
         <div class="row">
+                <form class="form-horizontal" method="POST" action="{{ route('eon.laravellti.install') }}">
 
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-success btn-xs" role="button">Activate</a></p>
-                    </div>
-                </div>
-            </div>
+                    @if (session('error_message'))
+                        <div class="col-md-12">
+                            <div class="alert alert-danger">
+                                {{ session('error_message') }}
+                            </div>
+                        </div>
+                    @endif
 
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
-                    </div>
-                </div>
-            </div>
+                    @if (session('success_message'))
+                        <div class="col-md-12">
+                            <div class="alert alert-success">
+                                {{ session('success_message') }}
+                            </div>
+                        </div>
+                    @endif
 
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
-                    </div>
-                </div>
-            </div>
+                    @if($errors->count() > 0)
+                        <div class="col-md-12">
+                            <div class="alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                    <div>{{ $error }}</div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
 
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>Key</label>
+                            <input type="text" placeholder="Key" name="key" class="form-control" value="{{ old('key') }}"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Secret</label>
+                            <input type="text" placeholder="Secret" name="secret" class="form-control" value="{{ old('secret') }}"/>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label>Launch URL</label>
+                            <input type="text" placeholder="Launch URL" name="launch_url" class="form-control" value="{{ old('launch_url') }}"/>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label>Config URL</label>
+                            <input type="text" placeholder="Config URL" name="config_url" class="form-control" value="{{ old('config_url') }}"/>
+                        </div>
+                        <div class="col-md-2">
+                            <label>&nbsp;</label>
+                            <button type="submit" class="btn btn-primary btn-block">GO!</button>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-success btn-xs" role="button">Activate</a></p>
-                    </div>
-                </div>
-            </div>
+                    {{ csrf_field() }}
+                </form>
 
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-success btn-xs" role="button">Activate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-success btn-xs" role="button">Activate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-success btn-xs" role="button">Activate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-danger btn-xs" role="button">Deactivate</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>LTI Component</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">View</a> <a href="#" class="btn btn-success btn-xs" role="button">Activate</a></p>
-                    </div>
-                </div>
             </div>
 
         </div> <!-- /row -->
@@ -266,6 +96,6 @@
 @endsection
 
 @section('custom-scripts')
-    <script src="/vendor/appstore/js/jquery.min.js"></script>
-    <script src="/vendor/appstore/js/bootstrap.min.js"></script>
+    <script src="/vendor/laravellti/js/jquery.min.js"></script>
+    <script src="/vendor/laravellti/js/bootstrap.min.js"></script>
 @endsection
