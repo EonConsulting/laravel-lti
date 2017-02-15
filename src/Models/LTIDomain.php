@@ -18,4 +18,12 @@ class LTIDomain extends Model {
         'key_id', 'context_id', 'domain', 'port', 'consumer_key', 'secret', 'json'
     ];
 
+    public function context() {
+        return $this->hasOne(LTIContext::class, 'context_id', 'context_id');
+    }
+
+    public function key() {
+        return $this->hasOne(LTIKey::class, 'key_id', 'key_id');
+    }
+
 }

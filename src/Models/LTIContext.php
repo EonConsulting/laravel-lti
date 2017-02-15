@@ -19,4 +19,12 @@ class LTIContext extends Model {
         'context_sha256', 'context_key', 'key_id', 'title', 'json', 'settings', 'settings_url', 'entity_version'
     ];
 
+    public function domain() {
+        return $this->hasOne(LTIDomain::class, 'context_id', 'context_id');
+    }
+
+    public function key() {
+        return $this->hasOne(LTIKey::class, 'key_id', 'key_id');
+    }
+
 }

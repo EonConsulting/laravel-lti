@@ -9,18 +9,22 @@
 namespace EONConsulting\LaravelLTI;
 
 
+use EONConsulting\LaravelLTI\Classes\Domains;
 use EONConsulting\LaravelLTI\Http\Controllers\InstallLTIToolController;
 use EONConsulting\LaravelLTI\Http\Controllers\LaunchLTI;
 
 class LaravelLTI {
 
-    public function launch() {
-//        return LaunchLTI::launch();
-        return LaunchLTI::launchTao();
+    public function launch($launch_url = '', $key = '', $secret = '') {
+        return LaunchLTI::launch($launch_url, $key, $secret);
     }
 
     public function install() {
         return InstallLTIToolController::index();
+    }
+
+    public function get_domains() {
+        return Domains::listDomains();
     }
 
 }

@@ -20,4 +20,8 @@ class LTIKey extends Model {
         'tool_profile', 'new_tool_profile', 'json', 'settings', 'settings_url', 'entity_version'
     ];
 
+    public function domain() {
+        return $this->hasOne(LTIDomain::class, 'key_id', 'key_id');
+    }
+
 }

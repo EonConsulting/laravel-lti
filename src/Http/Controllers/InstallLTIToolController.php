@@ -27,9 +27,10 @@ class InstallLTIToolController extends LTIBaseController {
 
     static public function store(StoreLTIToolRequest $request) {
 
+        $xml = [];
         $xml = ImportConfig::read_from_url($request->config_url);
 
-        if(!$xml) {
+        if(!$xml && !$request->has('launch_url')) {
             session()->flash('error_message', 'Something wen\'t wrong');
             return redirect()->route('eon.laravellti.install');
         }
@@ -42,16 +43,43 @@ class InstallLTIToolController extends LTIBaseController {
         $key = '';
         $secret = '';
 
-        if(array_key_exists('bltititle', $arr)) {
+        if($arr && array_key_exists('bltititle', $arr)) {
             $title = $arr['bltititle'];
+        } else {
+            $title = $request->get('title', '');
         }
 
-        if(array_key_exists('bltidescription', $arr)) {
+        if($arr && array_key_exists('bltidescription', $arr)) {
             $desc = $arr['bltidescription'];
         }
 
-        if(array_key_exists('bltilaunch_url', $arr)) {
-            $launch_url = $arr['bltilaunch_url'];
+        $launch_url_found = false;
+        $title_found = false;
+        foreach($arr as $key=>$value){
+            if(str_contains($key, 'launch_url')){
+                $launch_url  = $value;
+                $launch_url_found = true;
+            }
+            if(str_contains($key, 'title')){
+                $title  = $value;
+                $title_found = true;
+            }
+            if(str_contains($key, 'description')){
+                $desc  = $value;
+            }
+        }
+
+        if(!$launch_url_found) {
+            $launch_url = $request->get('launch_url', '');
+        }
+
+        if(!$title_found) {
+            $title = $request->get('title', '');
+        }
+
+        if(LTIDomain::where('domain', $launch_url)->first()) {
+            session()->flash('error_message', 'A component with that launch URL already exists.');
+            return redirect()->route('eon.laravellti.appstore');
         }
 
         if($request->has('key')) {
@@ -69,7 +97,7 @@ class InstallLTIToolController extends LTIBaseController {
             $lti_key->key_key = $key;
             $lti_key->secret = $secret;
             $lti_key->ack = '';
-            $lti_key->user_id = '';
+            $lti_key->user_id = $request->user()->id;
             $lti_key->consumer_profile = '';
             $lti_key->new_consumer_profile = '';
             $lti_key->tool_profile = '';

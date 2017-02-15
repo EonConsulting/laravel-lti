@@ -68,7 +68,11 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label>Title</label>
+                            <input type="text" placeholder="Title" name="title" class="form-control" value="{{ old('title') }}"/>
+                        </div>
+                        <div class="col-md-8">
                             <label>Launch URL</label>
                             <input type="text" placeholder="Launch URL" name="launch_url" class="form-control" value="{{ old('launch_url') }}"/>
                         </div>
