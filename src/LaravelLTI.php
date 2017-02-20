@@ -19,6 +19,10 @@ class LaravelLTI {
         return LaunchLTI::launch($launch_url, $key, $secret);
     }
 
+    public function launch_tao($launch_url = '') {
+        return LaunchLTI::launch($launch_url, 'unisa', '12345');
+    }
+
     public function install() {
         return InstallLTIToolController::index();
     }
