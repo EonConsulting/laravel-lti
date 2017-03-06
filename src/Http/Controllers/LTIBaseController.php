@@ -29,6 +29,7 @@ class LTIBaseController extends Controller {
                 if ($launch->send_403) return response($launch->error_message, 403);
                 ob_start();
                 ob_get_clean();
+
                 return $next($request);
             });
         }

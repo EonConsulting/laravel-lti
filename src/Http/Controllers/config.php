@@ -6,7 +6,8 @@
 
 // If we just are using Tsugi but not part of another site
 $apphome = false;
-$wwwroot = env('APP_URL', 'http://tools.dev');
+$wwwroot = env('APP_URL', 'http://system.dev');
+//echo $wwwroot;
 // $wwwroot = 'http://localhost:8888/tsugi';
 // $wwwroot = "https://fb610139.ngrok.io/tsugi";
 
@@ -18,8 +19,8 @@ $wwwroot = env('APP_URL', 'http://tools.dev');
 // Make sure to check for all the "Embedded Tsugi" configuration options below
 
 $dirroot = realpath(__DIR__);
-$autoload_path = __DIR__."/../../../vendor/autoload.php";
-require_once($autoload_path);
+
+require_once(__DIR__."/../../../vendor/autoload.php");
 
 // We store the configuration in a global object
 // Additional documentation on these fields is
