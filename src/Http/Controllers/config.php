@@ -18,8 +18,8 @@ $wwwroot = env('APP_URL', 'http://tools.dev');
 // Make sure to check for all the "Embedded Tsugi" configuration options below
 
 $dirroot = realpath(__DIR__);
-
-require_once(__DIR__."/../../../vendor/autoload.php");
+$autoload_path = __DIR__."/../../../vendor/autoload.php";
+require_once($autoload_path);
 
 // We store the configuration in a global object
 // Additional documentation on these fields is

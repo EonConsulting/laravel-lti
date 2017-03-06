@@ -18,6 +18,6 @@
     ]
   },
   "require": {
-    "tsugi/lib": "dev-master#60bc5574df95e7bd657c18ecce5baed08680ada5"
+    "tsugi/lib": "dev-master#791ad81384e194d7716c3898afefb4ee24629571"
   }
 }

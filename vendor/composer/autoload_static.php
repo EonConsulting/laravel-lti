@@ -25,6 +25,7 @@ class ComposerStaticInit51e6ddbac88965ec4c4a1d90cb47393f
         'Tsugi\\' => 
         array (
             0 => __DIR__ . '/..' . '/tsugi/lib/src',
+            1 => __DIR__ . '/..' . '/tsugi/lib/src',
         ),
         'EONConsulting\\LaravelLTI\\' => 
         array (
