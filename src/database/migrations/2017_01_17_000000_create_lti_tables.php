@@ -105,6 +105,21 @@ class CreateLTITables extends Migration {
             $table->timestamps();
         });
 
+        Schema::create('users_lti_links', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('lti_user_id')->unsigned();
+            $table->integer('context_id')->unsigned();
+            $table->string('lis_person_contact_email_primary');
+            $table->string('lis_person_name_family');
+            $table->string('lis_person_name_full');
+            $table->string('lis_person_name_given');
+            $table->string('lis_person_sourcedid');
+            $table->string('lis_result_sourcedid');
+            $table->string('roles');
+            $table->timestamps();
+        });
+
 //        Schema::table('lti2_tool_proxy', function(Blueprint $table) {
 //            $table->foreign('consumer_pk')->references('consumer_pk')->on('lti2_consumer')->onDelete('cascade');
 //        });
@@ -141,6 +156,7 @@ class CreateLTITables extends Migration {
         Schema::drop('lti2_resource_link');
         Schema::drop('lti2_user_result');
         Schema::drop('lti2_share_key');
+        Schema::drop('users_lti_links');
     }
 
 }

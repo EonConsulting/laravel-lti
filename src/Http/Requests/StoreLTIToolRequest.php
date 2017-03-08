@@ -32,7 +32,7 @@ class StoreLTIToolRequest extends FormRequest {
             'secret' => '',
             'title' => 'required_with:launch_url',
             'config_url' => 'required_without:launch_url|url',
-            'launch_url' => 'required_without:config_url|url',
+            'launch_url' => 'required_without:config_url',
         ];
     }
 }

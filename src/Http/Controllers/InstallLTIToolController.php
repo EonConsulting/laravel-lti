@@ -113,7 +113,7 @@ class InstallLTIToolController extends LTIBaseController {
         $context = new LTIContext;
         $context->context_sha256 = lti_sha256($key);
         $context->context_key = $key;
-        $context->key_id = ($has_key) ? $lti_key->key_id : null;
+        $context->key_id = ($has_key) ? $lti_key->key_id : 1;
         $context->title = $title;
         $context->json = json_encode($xml);
         $context->settings = '';
