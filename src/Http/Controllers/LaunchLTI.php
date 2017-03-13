@@ -10,13 +10,18 @@ namespace EONConsulting\LaravelLTI\Http\Controllers;
 
 require_once "config.php";
 
+use Illuminate\Http\Request;
 use Tsugi\Config\ConfigInfo;
 use Tsugi\Core\LTIX;
 use Tsugi\Util\LTI;
 
 class LaunchLTI {
 
-    static public function launch($launch_url = '', $key = '', $secret = '') {
+    static public function launch(Request $request, $launch_url = '', $key = '', $secret = '') {
+
+        $user = $request->user();
+        $lti = $user->lti;
+
         $tool_consumer_instance_guid = 'lmsng.school.edu';
         $tool_consumer_instance_description = 'University of School (LMSng)';
 

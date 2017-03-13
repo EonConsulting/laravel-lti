@@ -53,6 +53,8 @@ class LTIBaseController extends Controller {
                         'roles' => $request->all()['roles']
                     ]);
 
+                    Auth::loginUsingId($user->id);
+
 //                    $role = roles_permissions()->role_exists($request->all()['roles']);
 //                    if($role) {
 //                        if(!$user->hasRole(-1, $role)) {
@@ -61,9 +63,12 @@ class LTIBaseController extends Controller {
 //                    }
                 } else if(array_key_exists('user_id', $request->all())) {
                     $user =  UserLTILink::where('lti_user_id', $request->all()['user_id'])->first();
-                    if($user)
-                        Auth::loginUsingId($user->user->id);
+                    if($user) {
+                        $user = $user->user;
+                        Auth::loginUsingId($user->id);
+                    }
                 }
+
                 if ($launch->redirect_url) return redirect($launch->redirect_url);
                 if ($launch->send_403) return response($launch->error_message, 403);
                 ob_start();
