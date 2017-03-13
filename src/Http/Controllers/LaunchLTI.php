@@ -17,7 +17,7 @@ use Tsugi\Util\LTI;
 
 class LaunchLTI {
 
-    static public function launch(Request $request, $launch_url = '', $key = '', $secret = '') {
+    static public function launch($launch_url = '', $key = '', $secret = '') {
 
         $user = $request->user();
         $lti = $user->lti;
