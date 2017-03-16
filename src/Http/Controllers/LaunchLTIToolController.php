@@ -13,6 +13,12 @@ class LaunchLTIToolController extends LTIBaseController {
         $key = $request->get('key', '');
         $secret = $request->get('secret', '');
 
+        // query
+//        $yt = YourTable::where('launch_url', $launch_url)->first();
+//
+//        $key = $yt->key;
+//        $secret = $yt->secret;
+
         return laravel_lti()->launch($launch_url, $key, $secret);
     }
 

@@ -19,9 +19,6 @@ class LaunchLTI {
 
     static public function launch($launch_url = '', $key = '', $secret = '') {
 
-        $user = $request->user();
-        $lti = $user->lti;
-
         $tool_consumer_instance_guid = 'lmsng.school.edu';
         $tool_consumer_instance_description = 'University of School (LMSng)';
 
