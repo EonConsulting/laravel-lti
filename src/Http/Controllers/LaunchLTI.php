@@ -24,7 +24,7 @@ class LaunchLTI {
 
         $params = [
             'lti_message_type' => 'basic-lti-launch-request',
-            'lti_version' => '2.0',
+            'lti_version' => 'LTI-1p0',
             'resource_link_id' => '12345',
             'resource_link_title' => 'Title for thing',
             'resource_link_description' => 'desc',

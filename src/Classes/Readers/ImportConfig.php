@@ -11,6 +11,31 @@ namespace EONConsulting\LaravelLTI\Classes\Readers;
 
 class ImportConfig {
 
+    //Read from URL using DOM Document
+
+    /**
+     * @param bool $url
+     * @return bool|DOMDocument
+     */
+
+    static function read_from_dom($url = false) {
+        //Check if url was provided
+        if(!$url)
+            return false;
+
+        //get xml from URL
+        $xmlstr = file_get_contents($url);
+
+        //get into xml string
+        $xmlstr = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $xmlstr);
+
+        //Create a DomDoc XML Array from String
+
+        $xmlarr = XML2Array::createArray($xmlstr);
+
+        return $xmlarr;
+    }
+
     static function read_from_url($url = false) {
         // check if a url was provided
         if(!$url)
