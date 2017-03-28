@@ -69,7 +69,7 @@ class CreateTsugiTables extends Migration {
         Schema::create('lti_domain', function (Blueprint $table) {
             $table->integer('key_id')->unsigned()->unique();
             $table->integer('context_id')->unsigned()->nullable()->unique()->index();
-            $table->string('domain')->nullable()->unique();
+            $table->longText('domain')->nullable()->unique();
             $table->integer('port')->nullable();
             $table->text('consumer_key')->nullable();
             $table->text('secret')->nullable();

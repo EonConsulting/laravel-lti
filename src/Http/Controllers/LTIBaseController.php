@@ -69,8 +69,6 @@ class LTIBaseController extends Controller {
                     }
                 }
 
-                dd(laravel_lti()->get_user_lti_details(request()->user()));
-
                 if ($launch->redirect_url) return redirect($launch->redirect_url);
                 if ($launch->send_403) return response($launch->error_message, 403);
                 ob_start();
