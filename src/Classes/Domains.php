@@ -26,28 +26,50 @@ class Domains {
                 'key' => ($domain->key) ? $domain->key->key_key : null,
                 'secret' => ($domain->key) ? $domain->key->secret : null,
                 'context_id' => $domain->context_id,
-                'icon' => ''
+                'icon' => '',
+                'logo_url' => $domain->logo_uri
             ];
 
             if($domain->json) {
-                $xml = json_decode($domain->json);
+                $xml = json_decode($domain->json, true);
 
                 if($xml) {
                     $arr = (array) $xml;
 
-                    if(array_key_exists('bltiicon', $arr) && $arr['bltiicon'] != '') {
-                        if($arr['bltiicon'] instanceof \stdClass) {
-                            if(!empty((array) $arr['bltiicon']))
-                                $obj['icon'] = (array) $arr['bltiicon'];
-                        } else {
-                            $obj['icon'] = $arr['bltiicon'];
+//                    dd($arr);
+
+                    foreach ($arr as $innerarr){
+//                        dd($arr);
+
+                        if(array_key_exists('bltidescription', $innerarr)) {
+                            if($innerarr['bltidescription']) {
+                                $obj['description'] = $innerarr['bltidescription'];
+                            }
+                        }
+
+                        if(array_key_exists('bltidescription', $innerarr)) {
+                            if($innerarr['bltidescription']) {
+                                $obj['description'] = $innerarr['bltidescription'];
+                            }
+                        }
+
+                        if(array_key_exists('selection_height', $innerarr)) {
+                            if($innerarr['selection_height']) {
+                                $obj['selection_height'] = $innerarr['selection_height'];
+                            }
+                        }
+
+                        foreach ($innerarr as $key=>$value) {
+
+                            if (str_contains($key, 'selection_height')) {
+                                $obj['selection_height'] = $value;
+                                $selection_height = $obj['selection_height'];
+                            }
                         }
 
                     }
 
-                    if(array_key_exists('bltidescription', $arr)) {
-                        $obj['description'] = $arr['bltidescription'];
-                    }
+
                 }
             }
 
