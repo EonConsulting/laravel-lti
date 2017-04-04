@@ -15,7 +15,7 @@ class LTIDomain extends Model {
 
     protected $table = 'lti_domain';
     protected $fillable = [
-        'key_id', 'context_id', 'domain', 'port', 'consumer_key', 'secret', 'json'
+        'key_id', 'context_id', 'domain', 'port', 'consumer_key', 'secret', 'json', 'logo_uri'
     ];
 
     public function context() {

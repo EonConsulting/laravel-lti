@@ -57,6 +57,10 @@
                     @endif
 
                     <div class="form-group">
+                        <div class="col-md-12">
+                            <label>LTI Tool Logo</label>
+                            <input type="text" placeholder="Enter a Logo URL e.g http://logourl.co/logo.png" name="logo_uri" class="form-control" value="{{ old('logo_uri') }}"/>
+                        </div>
                         <div class="col-md-6">
                             <label>Key</label>
                             <input type="text" placeholder="Key" name="key" class="form-control" value="{{ old('key') }}"/>

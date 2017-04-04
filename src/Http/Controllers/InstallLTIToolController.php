@@ -106,6 +106,10 @@ class InstallLTIToolController extends LTIBaseController {
             $secret = $request->secret;
         }
 
+        if ($request->has('logo_uri')) {
+            $logo_uri = $request->logo_uri;
+        }
+
         if($has_key) {
             $lti_key = new LTIKey;
             $lti_key->key_sha256 = lti_sha256($key);
@@ -146,6 +150,7 @@ class InstallLTIToolController extends LTIBaseController {
         $lti_domain->consumer_key = $key;
         $lti_domain->secret = $secret;
         $lti_domain->json = json_encode($xml);
+        $lti_domain->logo_uri = $logo_uri;
 
         $lti_domain->save();
 
