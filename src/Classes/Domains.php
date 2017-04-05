@@ -41,29 +41,32 @@ class Domains {
                     foreach ($arr as $innerarr){
 //                        dd($arr);
 
-                        if(array_key_exists('bltidescription', $innerarr)) {
+                        if(array_key_exists('bltidescription', $innerarr) && is_array($innerarr)) {
                             if($innerarr['bltidescription']) {
                                 $obj['description'] = $innerarr['bltidescription'];
                             }
                         }
 
-                        if(array_key_exists('bltidescription', $innerarr)) {
+                        if(array_key_exists('bltidescription', $innerarr) && is_array($innerarr)) {
                             if($innerarr['bltidescription']) {
                                 $obj['description'] = $innerarr['bltidescription'];
                             }
                         }
 
-                        if(array_key_exists('selection_height', $innerarr)) {
+                        if(array_key_exists('selection_height', $innerarr) && is_array($innerarr)) {
                             if($innerarr['selection_height']) {
                                 $obj['selection_height'] = $innerarr['selection_height'];
                             }
                         }
 
-                        foreach ($innerarr as $key=>$value) {
+                        if(is_array($innerarr)) {
 
-                            if (str_contains($key, 'selection_height')) {
-                                $obj['selection_height'] = $value;
-                                $selection_height = $obj['selection_height'];
+                            foreach ($innerarr as $key => $value) {
+
+                                if (str_contains($key, 'selection_height')) {
+                                    $obj['selection_height'] = $value;
+                                    $selection_height = $obj['selection_height'];
+                                }
                             }
                         }
 
