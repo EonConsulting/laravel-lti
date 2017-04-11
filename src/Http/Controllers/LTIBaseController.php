@@ -45,7 +45,6 @@ class LTIBaseController extends Controller {
                             'password' =>  Hash::make('password1234'),
                         ]);
                     }
-
                     UserLTILink::create([
                         'user_id' => $user->id,
                         'lti_user_id' => $request->all()['user_id'],

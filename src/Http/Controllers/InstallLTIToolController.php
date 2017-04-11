@@ -21,8 +21,21 @@ class InstallLTIToolController extends LTIBaseController {
 
     protected $hasLTI = false;
 
+
+
     static public function index() {
         return view('eon.laravellti::install');
+    }
+
+    // Peace Ngara Addition Store a Bool value of false at init()
+    static public function getStatusOfLaunch_URL ($launch_url_found = false) {
+        $launch_url = $launch_url_found;
+        return $launch_url;
+    }
+
+    static public function getStatusOfTitle ($title_found = false) {
+        $title = $title_found;
+        return $title;
     }
 
     static public function store(StoreLTIToolRequest $request) {
@@ -45,50 +58,54 @@ class InstallLTIToolController extends LTIBaseController {
         $key = '';
         $secret = '';
 
-        if($xml && array_key_exists('bltititle', $xml)) {
-            $title = $xml['bltititle'];
-        } else {
-            $title = $request->get('title', '');
-        }
-
-        if($xml && array_key_exists('bltidescription', $xml)) {
-            $desc = $xml['bltidescription'];
-        }
-
-        $launch_url_found = false;
-        $title_found = false;
-
-//        dd($xml);
-        foreach($xml as $innerarr) {
-            //Perfom a Second Level Nesting Loop
-            foreach($innerarr as $key=>$value) {
-                if (str_contains($key, 'launch_url')) {
-                    $launch_url = $value;
-                    $launch_url_found = true;
-                }else if (str_contains($key, 'launchurl')) {
-                    $launch_url = $value;
-                    $launch_url_found = true;
-                }
-
-                if (str_contains($key, 'title')) {
-                    $title = $value;
-                    $title_found = true;
-                }
-
-                if (str_contains($key, 'description')) {
-                    $desc = $value;
-                }
+        if($xml) {
+            if ($xml && array_key_exists('bltititle', $xml)) {
+                $title = $xml['bltititle'];
+            } else {
+                $title = $request->get('title', '');
             }
 
+            if ($xml && array_key_exists('bltidescription', $xml)) {
+                $desc = $xml['bltidescription'];
+            }
+
+//            $launch_url_found  = InstallLTIToolController::getStatusOfLaunch_URL();
+//            $title_found = InstallLTIToolController::getStatusOfTitle();
+            //        dd($xml);
+            foreach ($xml as $innerarr) {
+                //Perfom a Second Level Nesting Loop
+                foreach ($innerarr as $key => $value) {
+                    if (str_contains($key, 'launch_url')) {
+                        $launch_url = $value;
+                        $launch_url_found = true;
+                    } else if (str_contains($key, 'launchurl')) {
+                        $launch_url = $value;
+                        InstallLTIToolController::getStatusOfLaunch_URL(true);
+                    }
+
+                    if (str_contains($key, 'title')) {
+                        $title = $value;
+                        InstallLTIToolController::getStatusOfLaunch_URL(true);;
+                    }
+
+                    if (str_contains($key, 'description')) {
+                        $desc = $value;
+                    }
+                }
+            }
         }
+
 
         //dd($launch_url);
 
-        if(!$launch_url_found) {
+        //Peace Ngara Additions -> Get Status of launch URL and Title
+        // If status is false get launch url
+
+        if(!(InstallLTIToolController::getStatusOfLaunch_URL())) {
             $launch_url = $request->get('launch_url', '');
         }
 
-        if(!$title_found) {
+        if(!(InstallLTIToolController::getStatusOfLaunch_URL())) {
             $title = $request->get('title', '');
         }
 
