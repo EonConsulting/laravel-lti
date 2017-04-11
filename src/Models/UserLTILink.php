@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class UserLTILink extends Model {
-
+    // Add Default Password
     protected $table = 'users_lti_links';
     protected $primaryKey = 'id';
     protected $fillable = [

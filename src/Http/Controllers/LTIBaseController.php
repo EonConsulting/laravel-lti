@@ -14,8 +14,11 @@ use App\Models\User;
 use EONConsulting\LaravelLTI\Models\UserLTILink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Validator\Constraints\Null;
 use Tsugi\Config\ConfigInfo;
 use Tsugi\Laravel\LTIX;
+//PEACE ADDITIONS PASSWORD HASH WITH BCRYPT
+use Illuminate\Support\Facades\Hash;
 
 use App\Http\Controllers\Controller;
 use Tsugi\Util\LTI;
@@ -33,10 +36,13 @@ class LTIBaseController extends Controller {
                 if(array_key_exists('user_id', $request->all()) && !UserLTILink::where('lti_user_id', $request->all()['user_id'])->first()) {
 
                     $user = User::where('email', $request->all()['lis_person_contact_email_primary'])->first();
+
                     if(!$user) {
                         $user = User::create([
                             'email' => $request->all()['lis_person_contact_email_primary'],
-                            'name' => $request->all()['lis_person_name_full']
+                            'name' => $request->all()['lis_person_name_full'],
+                            //UPDATE FROM PEACE NGARA TO CREATE A DEFAULT PASS FROM LAUNCH PARAMS
+                            'password' =>  Hash::make('password1234'),
                         ]);
                     }
 
