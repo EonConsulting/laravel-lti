@@ -17,16 +17,20 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Validator\Constraints\Null;
 use Tsugi\Config\ConfigInfo;
 use Tsugi\Laravel\LTIX;
-//PEACE ADDITIONS PASSWORD HASH WITH BCRYPT
 use Illuminate\Support\Facades\Hash;
 
 use App\Http\Controllers\Controller;
 use Tsugi\Util\LTI;
 
 class LTIBaseController extends Controller {
-
+    /**
+     * @var bool
+     */
     protected $hasLTI = true;
 
+    /**
+     * LTIBaseController constructor.
+     */
     public function __construct() {
         if($this->hasLTI) {
             $this->middleware(function ($request, $next) {
@@ -41,8 +45,8 @@ class LTIBaseController extends Controller {
                         $user = User::create([
                             'email' => $request->all()['lis_person_contact_email_primary'],
                             'name' => $request->all()['lis_person_name_full'],
-                            //UPDATE FROM PEACE NGARA TO CREATE A DEFAULT PASS FROM LAUNCH PARAMS
-                            'password' =>  Hash::make('password1234'),
+                            //Create Default Password
+                            'password' =>  Hash::make('12345'),
                         ]);
                     }
                     UserLTILink::create([
@@ -75,7 +79,7 @@ class LTIBaseController extends Controller {
                 }
 
                 if ($launch->redirect_url) return redirect($launch->redirect_url);
-                if ($launch->send_403) return response($launch->error_message, 403);
+                //if ($launch->send_403) return response($launch->error_message, 403);
                 ob_start();
                 ob_get_clean();
 
