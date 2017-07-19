@@ -12,6 +12,7 @@ namespace EONConsulting\LaravelLTI;
 use EONConsulting\LaravelLTI\Classes\Domains;
 use EONConsulting\LaravelLTI\Http\Controllers\InstallLTIToolController;
 use EONConsulting\LaravelLTI\Http\Controllers\LaunchLTI;
+use EONConsulting\LaravelLTI\Models\UserLTILink;
 
 class LaravelLTI {
 
@@ -101,6 +102,10 @@ class LaravelLTI {
 
     public function is_instructor($user = false, $context_id = false) {
         return $this->is_x($user, $context_id, 'Instructor');
+    }
+
+    public function is_lti($user = false) {
+        return $user->hasLtiLinks($user->id);
     }
 
     private function is_x($user = false, $context_id = false, $type = 'Learner') {
