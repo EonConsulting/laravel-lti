@@ -1,32 +1,12 @@
-@extends('layouts.lecturer')
-
-@section('site-title')
-    Categories
-@endsection
+@extends('layouts.app')
 
 @section('custom-styles')
 
 @endsection
 
-@section('body-class')
-
-@endsection
-
-@section('mini-logo-title')
-    Unisa
-@endsection
-
-@section('logo-title')
-    Unisa
-@endsection
-
-@section('page-title')
-    Categories
-@endsection
-
 @section('content')
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
                 <input type="hidden" id="tok" value="{{ csrf_token() }}" />
@@ -61,11 +41,9 @@
 
 @endsection
 
-@section('app-js')
-    <script src="{{url('/js/app.js') }}"></script>
-@endsection
 
 @section('custom-scripts')
+    <script src="{{url('/js/app.js') }}"></script>
     <script>
         $(document).ready(function($) {
             var _token = $('#tok').val();

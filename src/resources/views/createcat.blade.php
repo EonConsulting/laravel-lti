@@ -1,27 +1,7 @@
-@extends('layouts.lecturer')
-
-@section('site-title')
-    Create an Appstore Category
-@endsection
+@extends('layouts.app')
 
 @section('custom-styles')
 
-@endsection
-
-@section('body-class')
-
-@endsection
-
-@section('mini-logo-title')
-    Unisa
-@endsection
-
-@section('logo-title')
-    Unisa
-@endsection
-
-@section('page-title')
-    Create a New App Store Category
 @endsection
 
 @section('content')
@@ -89,10 +69,7 @@
     </div>
 @endsection
 
-@section('app-js')
-    <script src="{{url('/js/app.js')}}"></script>
-@endsection
-
 @section('custom-scripts')
+    <script src="{{url('/js/app.js')}}"></script>
     <script src="{{url('/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.js')}}"></script>
 @endsection
