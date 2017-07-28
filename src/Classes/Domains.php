@@ -9,12 +9,13 @@
 namespace EONConsulting\LaravelLTI\Classes;
 
 
+use EONConsulting\AppStore\Models\AppCategory;
 use EONConsulting\LaravelLTI\Models\LTIDomain;
 
 class Domains {
 
     static public function listDomains() {
-        $domains_obj = LTIDomain::with('context')->with('key')->get();
+        $domains_obj = LTIDomain::with('context')->with('key')->with('category')->get();
         $domains = [];
 
         foreach($domains_obj as $domain) {
@@ -26,6 +27,7 @@ class Domains {
                 'key' => ($domain->key) ? $domain->key->key_key : null,
                 'secret' => ($domain->key) ? $domain->key->secret : null,
                 'context_id' => $domain->context_id,
+                'category' => ($domain->category) ? $domain->category->title : null,
                 'icon' => '',
                 'logo_url' => $domain->logo_uri
             ];

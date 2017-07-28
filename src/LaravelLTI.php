@@ -14,24 +14,48 @@ use EONConsulting\LaravelLTI\Http\Controllers\InstallLTIToolController;
 use EONConsulting\LaravelLTI\Http\Controllers\LaunchLTI;
 use EONConsulting\LaravelLTI\Models\UserLTILink;
 
+/**
+ * Class LaravelLTI
+ * @package EONConsulting\LaravelLTI
+ */
 class LaravelLTI {
-
+    /**
+     * @param string $launch_url
+     * @param string $key
+     * @param string $secret
+     * @return string
+     */
     public function launch($launch_url = '', $key = '', $secret = '') {
         return LaunchLTI::launch($launch_url, $key, $secret);
     }
 
+    /**
+     * @param string $launch_url
+     * @return string
+     */
     public function launch_tao($launch_url = '') {
         return LaunchLTI::launch($launch_url, 'unisa', '12345');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function install() {
         return InstallLTIToolController::index();
     }
 
+    /**
+     * @return array
+     */
     public function get_domains() {
         return Domains::listDomains();
     }
 
+    /**
+     * @param bool $user
+     * @param bool $context_id
+     * @return array|bool
+     */
     public function get_user_lti_details($user = false, $context_id = false) {
         if(!$user) {
             // user not found
@@ -73,6 +97,11 @@ class LaravelLTI {
         return $params;
     }
 
+    /**
+     * @param bool $user
+     * @param bool $context_id
+     * @return bool
+     */
     public function get_user_lti_type($user = false, $context_id = false) {
         if(!$user) {
             // user not found
@@ -96,10 +125,20 @@ class LaravelLTI {
         }
     }
 
+    /**
+     * @param bool $user
+     * @param bool $context_id
+     * @return bool
+     */
     public function is_learner($user = false, $context_id = false) {
         return $this->is_x($user, $context_id, 'Learner');
     }
 
+    /**
+     * @param bool $user
+     * @param bool $context_id
+     * @return bool
+     */
     public function is_instructor($user = false, $context_id = false) {
         return $this->is_x($user, $context_id, 'Instructor');
     }

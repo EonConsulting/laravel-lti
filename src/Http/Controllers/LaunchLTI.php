@@ -16,9 +16,16 @@ use Tsugi\Core\LTIX;
 use Tsugi\Util\LTI;
 
 class LaunchLTI {
+    /**
+     * @param $user
+     * @return mixed
+     */
+    static public function feed_user_lti_details($user) {
+        return laravel_lti()->get_user_lti_details($user);
+    }
 
     static public function launch($launch_url = '', $key = '', $secret = '') {
-
+        $user = auth()->user();
         $tool_consumer_instance_guid = 'lmsng.school.edu';
         $tool_consumer_instance_description = 'University of School (LMSng)';
 
@@ -30,7 +37,7 @@ class LaunchLTI {
             'resource_link_description' => 'desc',
             'user_id' => 1235134,
             'user_image' => '',
-            'roles' => 'Instructor',
+            'roles' => self::feed_user_lti_details($user)['roles'],
 //            'roles' => 'Learner',
             'lis_person_name_given' => 'Josh',
             'lis_person_name_family' => 'Harington',
@@ -45,7 +52,7 @@ class LaunchLTI {
             'launch_presentation_locale' => 'en-US',
             'launch_presentation_document_target' => 'iframe',
             'launch_presentation_width' => 320,
-            'launch_presentation_height' => 240,
+            'launch_presentation_height' => 500,
             'launch_presentation_return_url' => $launch_url,
             'tool_consumer_instance_guid' => $tool_consumer_instance_guid,
             'tool_consumer_instance_name' => 'SchoolU',
@@ -63,7 +70,7 @@ class LaunchLTI {
 
         $content = LTI::postLaunchHTML($parms, $endpoint, false,
             "width=\"100%\" height=\"750\" scrolling=\"auto\" frameborder=\"0\" transparency");
-
+        var_dump(http_response_code());
         return $content;
     }
 
