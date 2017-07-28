@@ -18,7 +18,6 @@ class LaunchLTIToolController extends LTIBaseController {
 //
 //        $key = $yt->key;
 //        $secret = $yt->secret;
-
         return laravel_lti()->launch($launch_url, $key, $secret);
     }
 

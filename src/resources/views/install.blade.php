@@ -2,6 +2,7 @@
 
 @section('custom-styles')
     <link href="/vendor/laravellti/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
     <style>
         .thumbnail {
@@ -55,7 +56,6 @@
                             </div>
                         </div>
                     @endif
-
                     <div class="form-group">
                         <div class="col-md-12">
                             <label>LTI Tool Logo</label>
@@ -87,6 +87,14 @@
                             <label>Config URL</label>
                             <input type="text" placeholder="Config URL" name="config_url" class="form-control" value="{{ old('config_url') }}"/>
                         </div>
+                        <div class="col-md-4">
+                            <label>Application Category</label>
+                            <select class="form-control select" name="categories">
+                                @foreach ($categories as $category)
+                                <option value="{{$category['id']}}">{{$category['title']}}</option>
+                                @endforeach
+                            </select>
+                        <div>
                         <div class="col-md-2">
                             <label>&nbsp;</label>
                             <button type="submit" class="btn btn-primary btn-block">GO!</button>
@@ -101,9 +109,17 @@
         </div> <!-- /row -->
 
     </div> <!-- /container -->
+    <script type="text/javascript">
+        $('#select').select2({
+            placeholder: "Select App Category",
+            allowClear: true
+        });
+
+    </script>
 @endsection
 
 @section('custom-scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script src="/vendor/laravellti/js/jquery.min.js"></script>
     <script src="/vendor/laravellti/js/bootstrap.min.js"></script>
 @endsection

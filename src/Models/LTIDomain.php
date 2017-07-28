@@ -9,7 +9,9 @@
 namespace EONConsulting\LaravelLTI\Models;
 
 
+use EONConsulting\AppStore\Models\AppCategory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class LTIDomain extends Model {
 
@@ -24,6 +26,14 @@ class LTIDomain extends Model {
 
     public function key() {
         return $this->hasOne(LTIKey::class, 'key_id', 'key_id');
+    }
+
+    public function meta() {
+        return $this->hasMany(LTIDomainMeta::class, 'context_id', 'content_');
+    }
+
+    public function category() {
+        return $this->belongsTo(AppCategory::class, 'category_id');
     }
 
 }
