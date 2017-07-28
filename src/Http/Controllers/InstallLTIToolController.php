@@ -24,7 +24,15 @@ class InstallLTIToolController extends LTIBaseController {
 
 
     static public function index() {
-        return view('eon.laravellti::install');
+        $breadcrumbs = [
+            'title' => 'App Store',
+            'href' => route('eon.laravellti.appstore'),
+            'child' => [
+                'title' => 'Install App',
+            ],
+        ];
+
+        return view('eon.laravellti::install', ['breadcrumbs' => $breadcrumbs]);
     }
 
     // Peace Ngara Addition Store a Bool value of false at init()

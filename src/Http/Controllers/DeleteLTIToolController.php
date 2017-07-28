@@ -17,7 +17,16 @@ class DeleteLTIToolController extends LTIBaseController {
 
     public function show($context) {
         $context = LTIContext::find($context);
-        return view('eon.laravellti::delete', ['context' => $context]);
+
+        $breadcrumbs = [
+            'title' => 'App Store',
+            'href' => route('eon.laravellti.appstore'),
+            'child' => [
+                'title' => 'Delete '.$context->title,
+            ],
+        ];
+
+        return view('eon.laravellti::delete', ['context' => $context, 'breadcrumbs' => $breadcrumbs]);
     }
 
     public function destroy($context) {
