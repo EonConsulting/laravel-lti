@@ -27,7 +27,11 @@ class CreateCatController extends Controller
      */
     public function create()
     {
-        return view('eon.laravellti::createcat', ['categories' => $this->allCategories()]);
+        $breadcrumbs = [
+            "title" => "App Store Categories",
+        ];
+
+        return view('eon.laravellti::createcat', ['breadcrumbs' => $breadcrumbs, 'categories' => $this->allCategories()]);
     }
 
     /**

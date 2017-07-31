@@ -25,11 +25,7 @@ class InstallLTIToolController extends LTIBaseController {
     protected $hasLTI = false;
 
     static public function index(AppCategory $category) {
-        return view('eon.laravellti::install',['categories' => self::allCategories($category)]);
-    }
 
-
-    static public function index() {
         $breadcrumbs = [
             'title' => 'App Store',
             'href' => route('eon.laravellti.appstore'),
@@ -38,7 +34,11 @@ class InstallLTIToolController extends LTIBaseController {
             ],
         ];
 
-        return view('eon.laravellti::install', ['breadcrumbs' => $breadcrumbs]);
+        return view('eon.laravellti::install',['breadcrumbs' => $breadcrumbs, 'categories' => self::allCategories($category)]);
+    }
+
+    static public function allCategories($category) {
+        return $category->all();
     }
 
     static public function getStatusOfLaunch_URL ($launch_url_found = false) {

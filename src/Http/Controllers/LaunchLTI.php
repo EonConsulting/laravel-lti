@@ -70,7 +70,6 @@ class LaunchLTI {
 
         $content = LTI::postLaunchHTML($parms, $endpoint, false,
             "width=\"100%\" height=\"750\" scrolling=\"auto\" frameborder=\"0\" transparency");
-        var_dump(http_response_code());
         return $content;
     }
 

@@ -21,7 +21,10 @@ use Tsugi\Util\LTI;
 class ToolCatsController extends Controller
 {
     public function index(AppCategory $category) {
-        return view('eon.laravellti::categories', ['categories' => $this->allCategories($category)]);
+        $breadcrumbs = [
+            "title" => "App Store Categories",
+        ];
+        return view('eon.laravellti::categories', ['breadcrumbs' => $breadcrumbs, 'categories' => $this->allCategories($category)]);
     }
 
     public function allCategories($category) {
