@@ -149,7 +149,6 @@
 @endsection
 
 @section('custom-scripts')
-@endsection
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script src="/vendor/laravellti/js/jquery.min.js"></script>
     <script src="/vendor/laravellti/js/bootstrap.min.js"></script>
